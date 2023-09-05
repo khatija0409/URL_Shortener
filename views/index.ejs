@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>URL Shortener</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+</head>
+
+<body>
+    <div class="container">
+        <h1>URL Shortener</h1>
+        <form action="/shortUrls" method="POST" class="my-4 form-inline">
+            <label for="fullUrl" class="visually-hidden-focusable ">URL</label>
+            <input required   placeholder="Enter the URL" name="fullUrl" id="fullUrl" class="form-control mr-2 rounded-pill fw-medium">
+            <button type="submit" class="btn btn-success mt-3">Shrink</button>
+        </form>
+        <!--
+        table to store the full url and short urls created along with the number of times it was clicked-->
+
+        <table class="table table-striped table-success table-hover">
+            <thead>
+                <tr>
+                    <th class="d-flex justify-content-center">
+                        Full URL
+                    </th>
+                    <th>
+                        Short URL
+                    </th>
+                    <th>
+                        Clicks
+                    </th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <!--
+                        adding js
+                    -->
+                <% shortUrls.forEach(shortUrl=>{%>
+
+                    <tr>
+                        <td>
+                            <a href="<%=shortUrl.fullUrl%>" class="link-success link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">
+                                <%=shortUrl.fullUrl%>
+                            </a>
+                        </td>
+                        <td>
+                            <a href="<%=shortUrl.shortUrl%>" class="link-success link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">
+                                <%=shortUrl.shortUrl%>
+                            </a>
+                        </td>
+                        <td class="text-success">
+                           <%=shortUrl.clicks%>
+                                
+                            
+                        </td>
+                    </tr>
+
+
+                <% })%>
+
+            </tbody>
+        </table>
+
+    </div>
+</body>
+
+</html>
